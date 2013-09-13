@@ -151,6 +151,7 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 	
 	self.moviePlayer.controlStyle = MPMovieControlStyleFullscreen;
 	[self.moviePlayer play];
+
 }
 
 - (void) viewWillDisappear:(BOOL)animated
@@ -161,6 +162,10 @@ static void *XCDYouTubeVideoPlayerViewControllerKey = &XCDYouTubeVideoPlayerView
 		return;
 	
 	[self.connection cancel];
+
+    if(self.delegate){
+      [self.delegate viewAlmostDisappear];
+    }
 }
 
 #pragma mark - NSURLConnectionDataDelegate / NSURLConnectionDelegate

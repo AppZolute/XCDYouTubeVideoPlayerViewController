@@ -31,11 +31,17 @@ MP_EXTERN NSString *const XCDMetadataKeySmallThumbnailURL;
 MP_EXTERN NSString *const XCDMetadataKeyMediumThumbnailURL;
 MP_EXTERN NSString *const XCDMetadataKeyLargeThumbnailURL;
 
+@protocol XCDYouTubeVideoPlayerDelegate <NSObject>
+    @optional
+    - (void) viewAlmostDisappear;
+@end
+
 @interface XCDYouTubeVideoPlayerViewController : MPMoviePlayerViewController
 
 - (id) initWithVideoIdentifier:(NSString *)videoIdentifier;
 
 @property (nonatomic, copy) NSString *videoIdentifier;
+@property (nonatomic, weak) id <XCDYouTubeVideoPlayerDelegate> delegate;
 
 // On iPhone, defaults to @[ @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
 // On iPad, defaults to @[ @(XCDYouTubeVideoQualityHD1080), @(XCDYouTubeVideoQualityHD720), @(XCDYouTubeVideoQualityMedium360), @(XCDYouTubeVideoQualitySmall240) ]
